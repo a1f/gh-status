@@ -1,0 +1,8 @@
+{
+  "identifier": "default",
+  "description": "Default capability set for gh-status",
+  "windows": ["main"],
+  "permissions": [
+    "core:default"
+  ]
+}

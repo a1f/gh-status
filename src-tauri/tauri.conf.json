@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicholasflamy/tauri/HEAD/packages/tauri-utils/schema.json",
+  "productName": "gh-status",
+  "version": "0.1.0",
+  "identifier": "com.gh-status.app",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "gh-status",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  }
+}
