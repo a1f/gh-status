@@ -1,22 +1,30 @@
+use std::sync::Arc;
+
+use tauri::State;
+
+use crate::accounts::AccountManager;
 use crate::error::AppError;
 use crate::types::Account;
 
-/// Thin command handlers for account management.
-/// All business logic lives in AccountManager — these just
-/// bridge the Tauri IPC boundary.
-
 #[tauri::command]
-pub async fn list_accounts() -> Result<Vec<Account>, AppError> {
-    // TODO: wire to AppState in M1.2
-    Ok(Vec::new())
+pub async fn list_accounts(
+    manager: State<'_, Arc<AccountManager>>,
+) -> Result<Vec<Account>, AppError> {
+    Ok(manager.list_accounts())
 }
 
 #[tauri::command]
-pub async fn add_account(_id: String, _token: String) -> Result<Account, AppError> {
-    Err(AppError::Auth("not yet implemented".into()))
+pub async fn add_account(
+    token: String,
+    manager: State<'_, Arc<AccountManager>>,
+) -> Result<Account, AppError> {
+    manager.add_account(&token).await
 }
 
 #[tauri::command]
-pub async fn remove_account(_id: String) -> Result<(), AppError> {
-    Err(AppError::Auth("not yet implemented".into()))
+pub async fn remove_account(
+    id: String,
+    manager: State<'_, Arc<AccountManager>>,
+) -> Result<(), AppError> {
+    manager.remove_account(&id).await
 }

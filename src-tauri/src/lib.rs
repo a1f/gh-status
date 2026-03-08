@@ -6,10 +6,16 @@ mod store;
 mod sync;
 mod types;
 
+use std::sync::Arc;
+
+use accounts::{AccountManager, KeychainStore};
 use commands::{accounts as acc_cmd, pulls as pr_cmd, sync as sync_cmd};
 
 pub fn run() {
+    let manager = Arc::new(AccountManager::new(Box::new(KeychainStore::new())));
+
     tauri::Builder::default()
+        .manage(manager)
         .invoke_handler(tauri::generate_handler![
             acc_cmd::list_accounts,
             acc_cmd::add_account,
