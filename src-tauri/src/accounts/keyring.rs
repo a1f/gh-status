@@ -2,6 +2,13 @@ use crate::error::AppError;
 
 const SERVICE_NAME: &str = "com.gh-status.github-pat";
 
+/// Abstraction over token storage to enable testing without macOS Keychain.
+pub trait TokenStore: Send + Sync {
+    fn store_token(&self, account_id: &str, token: &str) -> Result<(), AppError>;
+    fn get_token(&self, account_id: &str) -> Result<String, AppError>;
+    fn delete_token(&self, account_id: &str) -> Result<(), AppError>;
+}
+
 /// Thin wrapper around the macOS Keychain for storing GitHub PATs.
 /// Each account gets its own keyring entry keyed by `account_id`.
 pub struct KeychainStore {
@@ -16,27 +23,6 @@ impl KeychainStore {
         }
     }
 
-    /// Persists a GitHub PAT for the given account in the macOS Keychain.
-    pub fn store_token(&self, account_id: &str, token: &str) -> Result<(), AppError> {
-        if token.is_empty() {
-            return Err(AppError::Keychain("token must not be empty".into()));
-        }
-        let entry = self.entry(account_id)?;
-        entry.set_password(token).map_err(map_keyring_error)
-    }
-
-    /// Retrieves the stored PAT for the given account from the macOS Keychain.
-    pub fn get_token(&self, account_id: &str) -> Result<String, AppError> {
-        let entry = self.entry(account_id)?;
-        entry.get_password().map_err(map_keyring_error)
-    }
-
-    /// Removes the stored PAT for the given account from the macOS Keychain.
-    pub fn delete_token(&self, account_id: &str) -> Result<(), AppError> {
-        let entry = self.entry(account_id)?;
-        entry.delete_credential().map_err(map_keyring_error)
-    }
-
     /// Returns the service name used for all keychain entries.
     pub fn service_name(&self) -> &str {
         self.service_name
@@ -47,6 +33,26 @@ impl KeychainStore {
             return Err(AppError::Keychain("account_id must not be empty".into()));
         }
         keyring::Entry::new(self.service_name, account_id).map_err(map_keyring_error)
+    }
+}
+
+impl TokenStore for KeychainStore {
+    fn store_token(&self, account_id: &str, token: &str) -> Result<(), AppError> {
+        if token.is_empty() {
+            return Err(AppError::Keychain("token must not be empty".into()));
+        }
+        let entry = self.entry(account_id)?;
+        entry.set_password(token).map_err(map_keyring_error)
+    }
+
+    fn get_token(&self, account_id: &str) -> Result<String, AppError> {
+        let entry = self.entry(account_id)?;
+        entry.get_password().map_err(map_keyring_error)
+    }
+
+    fn delete_token(&self, account_id: &str) -> Result<(), AppError> {
+        let entry = self.entry(account_id)?;
+        entry.delete_credential().map_err(map_keyring_error)
     }
 }
 

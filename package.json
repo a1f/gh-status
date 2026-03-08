@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "npm run lint:frontend",
+    "lint:frontend": "eslint .",
+    "lint:rust": "npm run lint:rust:fmt && npm run lint:rust:clippy",
+    "lint:rust:fmt": "cargo fmt --manifest-path src-tauri/Cargo.toml --check",
+    "lint:rust:clippy": "cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings -A dead_code",
+    "lint:all": "npm run lint && npm run typecheck && npm run lint:rust",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "tauri": "tauri"

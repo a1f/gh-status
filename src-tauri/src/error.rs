@@ -20,6 +20,9 @@ pub enum AppError {
     #[error("Configuration error: {0}")]
     Config(String),
 
+    #[error("Network error: {0}")]
+    Network(String),
+
     #[error("Internal error: {0}")]
     Internal(String),
 }
@@ -29,5 +32,11 @@ pub enum AppError {
 impl From<Box<dyn std::error::Error>> for AppError {
     fn from(err: Box<dyn std::error::Error>) -> Self {
         AppError::Internal(err.to_string())
+    }
+}
+
+impl From<reqwest::Error> for AppError {
+    fn from(err: reqwest::Error) -> Self {
+        AppError::Network(err.to_string())
     }
 }
