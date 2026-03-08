@@ -7,8 +7,8 @@ export async function listAccounts(): Promise<Account[]> {
   return invoke("list_accounts");
 }
 
-export async function addAccount(id: string, token: string): Promise<Account> {
-  return invoke("add_account", { id, token });
+export async function addAccount(token: string): Promise<Account> {
+  return invoke("add_account", { token });
 }
 
 export async function removeAccount(id: string): Promise<void> {
