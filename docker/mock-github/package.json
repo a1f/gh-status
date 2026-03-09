@@ -1,0 +1,13 @@
+{
+  "name": "mock-github-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mock GitHub GraphQL API for integration testing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

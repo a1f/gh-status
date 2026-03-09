@@ -1,0 +1,220 @@
+{
+  "data": {
+    "repo_0": {
+      "pullRequests": {
+        "nodes": [
+          {
+            "id": "PR_alpha_1",
+            "number": 1,
+            "title": "Add user authentication flow",
+            "state": "OPEN",
+            "isDraft": false,
+            "author": {
+              "login": "alice",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/100?v=4"
+            },
+            "baseRefName": "main",
+            "headRefName": "feat/auth",
+            "url": "https://github.com/test-org/repo-alpha/pull/1",
+            "createdAt": "2026-03-01T10:00:00Z",
+            "updatedAt": "2026-03-08T15:30:00Z",
+            "mergeable": "MERGEABLE",
+            "reviewDecision": "APPROVED",
+            "reviewRequests": {
+              "nodes": []
+            },
+            "commits": {
+              "nodes": [
+                {
+                  "commit": {
+                    "statusCheckRollup": { "state": "SUCCESS" }
+                  }
+                }
+              ]
+            },
+            "comments": { "totalCount": 3 },
+            "labels": {
+              "nodes": [
+                { "name": "enhancement", "color": "a2eeef" },
+                { "name": "ready-to-merge", "color": "0e8a16" }
+              ]
+            },
+            "latestComments": {
+              "nodes": [
+                { "createdAt": "2026-03-08T15:30:00Z" }
+              ]
+            }
+          },
+          {
+            "id": "PR_alpha_2",
+            "number": 2,
+            "title": "WIP: Refactor database layer",
+            "state": "OPEN",
+            "isDraft": true,
+            "author": {
+              "login": "bob",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/200?v=4"
+            },
+            "baseRefName": "main",
+            "headRefName": "refactor/db-layer",
+            "url": "https://github.com/test-org/repo-alpha/pull/2",
+            "createdAt": "2026-03-05T09:00:00Z",
+            "updatedAt": "2026-03-07T11:00:00Z",
+            "mergeable": "CONFLICTING",
+            "reviewDecision": "CHANGES_REQUESTED",
+            "reviewRequests": {
+              "nodes": []
+            },
+            "commits": {
+              "nodes": [
+                {
+                  "commit": {
+                    "statusCheckRollup": { "state": "FAILURE" }
+                  }
+                }
+              ]
+            },
+            "comments": { "totalCount": 1 },
+            "labels": {
+              "nodes": []
+            },
+            "latestComments": {
+              "nodes": [
+                { "createdAt": "2026-03-07T11:00:00Z" }
+              ]
+            }
+          },
+          {
+            "id": "PR_alpha_3",
+            "number": 3,
+            "title": "Add rate limit handling",
+            "state": "OPEN",
+            "isDraft": false,
+            "author": {
+              "login": "alice",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/100?v=4"
+            },
+            "baseRefName": "main",
+            "headRefName": "feat/rate-limits",
+            "url": "https://github.com/test-org/repo-alpha/pull/3",
+            "createdAt": "2026-03-08T08:00:00Z",
+            "updatedAt": "2026-03-09T10:00:00Z",
+            "mergeable": "UNKNOWN",
+            "reviewDecision": "REVIEW_REQUIRED",
+            "reviewRequests": {
+              "nodes": [
+                { "requestedReviewer": { "login": "charlie" } }
+              ]
+            },
+            "commits": {
+              "nodes": [
+                {
+                  "commit": {
+                    "statusCheckRollup": { "state": "PENDING" }
+                  }
+                }
+              ]
+            },
+            "comments": { "totalCount": 0 },
+            "labels": {
+              "nodes": [
+                { "name": "feature", "color": "1d76db" }
+              ]
+            },
+            "latestComments": {
+              "nodes": []
+            }
+          }
+        ]
+      }
+    },
+    "repo_1": {
+      "pullRequests": {
+        "nodes": [
+          {
+            "id": "PR_beta_10",
+            "number": 10,
+            "title": "Fix pagination in API client",
+            "state": "OPEN",
+            "isDraft": false,
+            "author": {
+              "login": "charlie",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/300?v=4"
+            },
+            "baseRefName": "main",
+            "headRefName": "fix/pagination",
+            "url": "https://github.com/test-org/repo-beta/pull/10",
+            "createdAt": "2026-03-06T14:00:00Z",
+            "updatedAt": "2026-03-09T09:00:00Z",
+            "mergeable": "MERGEABLE",
+            "reviewDecision": null,
+            "reviewRequests": {
+              "nodes": []
+            },
+            "commits": {
+              "nodes": [
+                {
+                  "commit": {
+                    "statusCheckRollup": null
+                  }
+                }
+              ]
+            },
+            "comments": { "totalCount": 0 },
+            "labels": {
+              "nodes": []
+            },
+            "latestComments": {
+              "nodes": []
+            }
+          },
+          {
+            "id": "PR_beta_11",
+            "number": 11,
+            "title": "Upgrade dependencies to latest versions",
+            "state": "OPEN",
+            "isDraft": false,
+            "author": {
+              "login": "alice",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/100?v=4"
+            },
+            "baseRefName": "main",
+            "headRefName": "chore/deps-upgrade",
+            "url": "https://github.com/test-org/repo-beta/pull/11",
+            "createdAt": "2026-03-07T16:00:00Z",
+            "updatedAt": "2026-03-09T08:00:00Z",
+            "mergeable": "MERGEABLE",
+            "reviewDecision": "APPROVED",
+            "reviewRequests": {
+              "nodes": [
+                { "requestedReviewer": { "login": "bob" } },
+                { "requestedReviewer": { "login": "charlie" } }
+              ]
+            },
+            "commits": {
+              "nodes": [
+                {
+                  "commit": {
+                    "statusCheckRollup": { "state": "SUCCESS" }
+                  }
+                }
+              ]
+            },
+            "comments": { "totalCount": 5 },
+            "labels": {
+              "nodes": [
+                { "name": "dependencies", "color": "0366d6" },
+                { "name": "approved", "color": "0e8a16" }
+              ]
+            },
+            "latestComments": {
+              "nodes": [
+                { "createdAt": "2026-03-09T08:00:00Z" }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
