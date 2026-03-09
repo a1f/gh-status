@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
-import type { Account, PullRequest } from "../types";
+import type { Account, PullRequest, RepoRef } from "../types";
 
 /** Typed wrappers around Tauri invoke() to keep IPC calls type-safe */
 
@@ -21,4 +21,16 @@ export async function listPullRequests(accountId?: string): Promise<PullRequest[
 
 export async function triggerSync(accountId?: string): Promise<void> {
   return invoke("trigger_sync", { accountId: accountId ?? null });
+}
+
+export async function listWatchedRepos(accountId: string): Promise<RepoRef[]> {
+  return invoke("list_watched_repos", { accountId });
+}
+
+export async function addWatchedRepo(accountId: string, owner: string, name: string): Promise<void> {
+  return invoke("add_watched_repo", { accountId, owner, name });
+}
+
+export async function removeWatchedRepo(accountId: string, owner: string, name: string): Promise<void> {
+  return invoke("remove_watched_repo", { accountId, owner, name });
 }
