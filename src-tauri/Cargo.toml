@@ -23,3 +23,4 @@ tokio = { version = "1", features = ["rt"] }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["rt", "macros"] }
+wiremock = "0.6"

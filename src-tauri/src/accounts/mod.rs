@@ -2,6 +2,7 @@ pub mod keyring;
 pub use keyring::{KeychainStore, TokenStore};
 
 use crate::error::AppError;
+use crate::github::client::{GITHUB_GRAPHQL_URL, USER_AGENT};
 use crate::types::Account;
 use std::future::Future;
 use std::pin::Pin;
@@ -26,10 +27,8 @@ impl TokenValidator for GitHubTokenValidator {
     }
 }
 
-const GITHUB_GRAPHQL_URL: &str = "https://api.github.com/graphql";
 const VIEWER_QUERY: &str =
     "{ viewer { login avatarUrl organizations(first: 100) { nodes { login } } } }";
-const USER_AGENT: &str = "gh-status";
 
 #[derive(serde::Deserialize)]
 struct GraphQLResponse {
